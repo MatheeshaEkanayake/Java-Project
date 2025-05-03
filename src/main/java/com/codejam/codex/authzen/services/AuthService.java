@@ -8,7 +8,7 @@ import com.codejam.codex.authzen.repositories.*;
 import com.codejam.codex.authzen.utils.EmailUtil;
 import com.codejam.codex.authzen.utils.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class AuthService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final Set<String> blacklistedTokens = new HashSet<>();
 
-    @Autowired
+    //@Autowired
     public AuthService(JwtService jwtService, UserService userService, UserRepository userRepository,
                        BCryptPasswordEncoder passwordEncoder, EmailUtil emailUtil, EmailTokenRepository emailTokenRepository, OauthProviderRepository oauthProviderRepository, OAuthService oAuthService, RoleRepository roleRepository, RefreshTokenRepository refreshTokenRepository) {
         this.jwtService = jwtService;

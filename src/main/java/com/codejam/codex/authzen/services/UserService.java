@@ -8,7 +8,7 @@ import com.codejam.codex.authzen.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.*;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+//import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserService {
 
@@ -25,7 +26,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public UserResponse loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
-        User user = new User();
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username or email: " + usernameOrEmail));
 
         Set<String> roles = user.getUserRoles()
                 .stream()

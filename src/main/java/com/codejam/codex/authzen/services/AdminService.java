@@ -20,10 +20,11 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+//import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AdminService {
 
@@ -53,8 +54,8 @@ public class AdminService {
 
         for (Role role : roles) {
             UserRole userRole = new UserRole();
-            userRole.setUser(new User());
-            userRole.setRole(new Role());
+            userRole.setUser(user);
+            userRole.setRole(role);
             user.getUserRoles().add(userRole);
         }
 
@@ -136,7 +137,7 @@ public class AdminService {
 
 
     private void logAction(String adminUsername, String actionType) {
-        User adminUser = userRepository.findByUsername(adminUsername)
+        userRepository.findByUsername(adminUsername)
                 .orElseThrow(() -> new RuntimeException("Admin user not found"));
 
         AuditLog log = new AuditLog();

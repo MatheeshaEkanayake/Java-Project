@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @ToString
 @Table(name = "roles")
+
 public class Role {
 
     @Id
@@ -26,9 +27,11 @@ public class Role {
     @Column
     private String description;
 
+    @Builder.Default
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private Set<UserRole> userRoles = new HashSet<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private Set<RolePermission> rolePermissions = new HashSet<>();
 }

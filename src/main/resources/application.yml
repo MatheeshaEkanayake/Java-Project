@@ -10,10 +10,6 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
-  security:
-    user:
-      name:  ${ADMIN_USERNAME}
-      password:  ${ADMIN_PASSWORD}
   mail:
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
@@ -32,6 +28,7 @@ spring:
     resources:
       static-locations: classpath:/static/
 
+
 jwt:
   secret: ${JWT_SECRET}
   access-token:
@@ -41,6 +38,10 @@ jwt:
 
 server:
   port: ${SERVER_PORT}
+  ssl:
+    enabled: false  # Enable in production
+  http2:
+    enabled: true
 
 email:
   from: ${EMAIL_FROM}
@@ -54,7 +55,6 @@ admin:
   email: ${ADMIN_EMAIL}
   username: ${ADMIN_USERNAME}
   password: ${ADMIN_PASSWORD}
-
 
 springdoc:
   api-docs:
