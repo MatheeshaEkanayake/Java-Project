@@ -1,16 +1,12 @@
 package com.codejam.codex.authzen.dtos.outputs;
 
-import com.codejam.codex.authzen.models.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+//import com.codejam.codex.authzen.models.User;
+
 import lombok.*;
 
 import java.sql.Timestamp;
 
-@Getter
-@Setter
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

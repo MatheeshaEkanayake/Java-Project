@@ -3,7 +3,6 @@ package com.codejam.codex.authzen.dtos.outputs;
 import com.codejam.codex.authzen.models.User;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
