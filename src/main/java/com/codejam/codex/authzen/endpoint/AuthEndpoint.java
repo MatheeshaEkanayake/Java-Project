@@ -5,7 +5,7 @@ import com.codejam.codex.authzen.dtos.outputs.TokenResponse;
 import com.codejam.codex.authzen.dtos.outputs.UserResponse;
 import com.codejam.codex.authzen.services.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +17,7 @@ public class AuthEndpoint {
 
     private final AuthService authService;
 
-    @Autowired
+    //@Autowired
     public AuthEndpoint(AuthService authService) {
         this.authService = authService;
     }

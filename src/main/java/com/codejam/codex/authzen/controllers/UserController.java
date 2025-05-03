@@ -8,7 +8,7 @@ import com.codejam.codex.authzen.endpoint.AuthEndpoint;
 import com.codejam.codex.authzen.endpoint.UserEndpoint;
 import com.codejam.codex.authzen.responses.AuthzenResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -27,7 +27,7 @@ public class UserController {
     private final AuthEndpoint authEndpoint;
     private final UserEndpoint userEndpoint;
 
-    @Autowired
+    //@Autowired
     public UserController(AuthEndpoint authEndpoint, UserEndpoint userEndpoint) {
         this.authEndpoint = authEndpoint;
         this.userEndpoint = userEndpoint;

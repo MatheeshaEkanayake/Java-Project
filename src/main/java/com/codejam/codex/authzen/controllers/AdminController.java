@@ -11,7 +11,7 @@ import com.codejam.codex.authzen.endpoint.AdminEndpoint;
 import com.codejam.codex.authzen.endpoint.AuthEndpoint;
 import com.codejam.codex.authzen.responses.AuthzenResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.annotation.Secured;
@@ -33,7 +33,7 @@ public class AdminController {
     private final AdminEndpoint adminEndpoint;
     private final AuthEndpoint authEndpoint;
 
-    @Autowired
+    //@Autowired
     public AdminController(AdminEndpoint adminEndpoint, AuthEndpoint authEndpoint) {
         this.adminEndpoint = adminEndpoint;
         this.authEndpoint = authEndpoint;
@@ -152,6 +152,38 @@ public class AdminController {
         return ResponseEntity.ok(response);
     }
 
+        // Add these new methods to the AdminController class:
+    
+    /**
+     * Lists all available roles in the system.
+     *
+     * @return List of role names
+     */
+    @GetMapping(ApiEndpoint.ADMIN_ROLES)
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('VIEW_ROLES')")
+    public ResponseEntity<AuthzenResponse<List<String>>> getRoles() {
+        List<String> roles = adminEndpoint.getRoles();
+        AuthzenResponse<List<String>> response = new AuthzenResponse<>(roles);
+        response.setMessage("Roles retrieved successfully");
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Bulk update of user roles.
+     *
+     * @param request Request containing user role updates
+     * @return Status of the update operation
+     */
+    @PostMapping(ApiEndpoint.ADMIN_UPDATE_ROLES)
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('UPDATE_ROLES')")
+    public ResponseEntity<AuthzenResponse<String>> updateRoles(@RequestBody RoleRequest request) {
+        String result = adminEndpoint.updateRoles(request);
+        AuthzenResponse<String> response = new AuthzenResponse<>();
+        response.setMessage(result);
+        return ResponseEntity.ok(response);
+    }
 
     /**
      * Delegates certain admin permissions to another user.

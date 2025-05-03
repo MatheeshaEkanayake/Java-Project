@@ -155,6 +155,41 @@ public class AdminService {
         return UserResponse.fromEntity(user, permissionNames);
     }
 
+           public String updateRoles(RoleRequest request) {
+        // Validate role exists
+        List<Role> roles = roleRepository.findByName(request.getRoleName());
+        if (roles.isEmpty()) {
+            throw new RuntimeException("Role not found: " + request.getRoleName());
+        }
+    
+        // Update role
+        Role role = roles.get(0);
+        role.setDescription(request.getDescription());
+        roleRepository.save(role);
+    
+        // Log the action
+        logAction("SYSTEM", "Role updated: " + request.getRoleName());
+    
+        return "Role updated successfully";
+    }
 
+        
+    
+    public List<String> getRoles() {
+        // Get all roles from repository
+        List<Role> roles = roleRepository.findAll();
+        
+        // Convert to list of role names
+        List<String> roleNames = roles.stream()
+            .map(Role::getName)
+            .collect(Collectors.toList());
+    
+        // Log the action
+        logAction("SYSTEM", "Roles retrieved");
+        
+        return roleNames;
+    }
+    
+    
 
 }

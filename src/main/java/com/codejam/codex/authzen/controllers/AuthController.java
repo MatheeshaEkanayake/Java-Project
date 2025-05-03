@@ -6,7 +6,7 @@ import com.codejam.codex.authzen.dtos.outputs.TokenResponse;
 import com.codejam.codex.authzen.dtos.outputs.UserResponse;
 import com.codejam.codex.authzen.responses.AuthzenResponse;
 import com.codejam.codex.authzen.endpoint.AuthEndpoint;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class AuthController {
 
     private final AuthEndpoint authEndpoint;
 
-    @Autowired
+
     public AuthController(AuthEndpoint authEndpoint) {
         this.authEndpoint = authEndpoint;
     }

@@ -6,10 +6,10 @@ import com.codejam.codex.authzen.dtos.inputs.RoleUpdateRequest;
 import com.codejam.codex.authzen.dtos.outputs.AuditLogResponse;
 import com.codejam.codex.authzen.dtos.outputs.UpdateUserResponse;
 import com.codejam.codex.authzen.dtos.outputs.UserResponse;
-import com.codejam.codex.authzen.models.AuditLog;
-import com.codejam.codex.authzen.models.User;
+//import com.codejam.codex.authzen.models.AuditLog;
+//import com.codejam.codex.authzen.models.User;
 import com.codejam.codex.authzen.services.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class AdminEndpoint {
 
     private final AdminService adminService;
 
-    @Autowired
+   // @Autowired
     public AdminEndpoint(AdminService adminService) {
         this.adminService = adminService;
     }
@@ -91,4 +91,27 @@ public class AdminEndpoint {
     public String delegatePermissions(DelegateRequest request, String adminUsername) {
         return adminService.delegatePermissions(request, adminUsername);
     }
+
+    /**
+     * Updates multiple roles in bulk.
+     *
+     * @param request The role update request containing roles to update
+     * @return A message indicating the result of the operation
+     */
+    public String updateRoles(RoleRequest request) {
+        return adminService.updateRoles(request);
+    }
+
+
+    
+    /**
+     * Retrieves all available roles in the system.
+     *
+     * @return A list of role names.
+     */
+    public List<String> getRoles() {
+        return adminService.getRoles();
+    }
+    
+    
 }

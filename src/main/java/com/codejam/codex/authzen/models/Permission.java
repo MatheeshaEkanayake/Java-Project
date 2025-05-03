@@ -26,6 +26,7 @@ public class Permission {
     @Column
     private String description;
 
+    @Builder.Default
     @OneToMany(mappedBy = "permission", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RolePermission> rolePermissions = new HashSet<>();
 }
